@@ -1,0 +1,946 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="UpperRichTextBox.Text" xml:space="preserve">
+    <value>using System;
+using System.Collections.Generic;
+using System.Linq;
+using Kursovik.Model;
+
+namespace Kursovik.Presenter
+{
+    public class Parser
+    {
+        private enum ParserState
+        {
+            Start, IdRem, FString, FSymbol, EndFString, Format, OpenArg,
+            Scientific, ExpNumRem, End, Error
+        }
+
+        private ParserState currentState;
+        private List&lt;Lexem&gt; lexems;
+        private int position;
+        public List&lt;ErrorPair&gt; stateLog;
+
+        public Parser(List&lt;Lexem&gt; lexems)
+        {
+            this.lexems = lexems;
+            this.position = 0;
+            this.currentState = ParserState.Start;
+            this.stateLog = new List&lt;ErrorPair&gt;();
+        }
+
+        public void Parse()
+        {
+            bool hasErrors = false;
+            bool rowHasEnded = false;
+            int globalEndPos = 0;
+            while (position &lt; lexems.Count)
+            {
+                Lexem currentLexem = lexems[position];
+
+                switch (currentState)
+                {
+                    case ParserState.Start:
+                        rowHasEnded = false;
+                        if (currentLexem.lexemCode == 1){
+                            currentState = ParserState.IdRem;
+                        }
+                        else if (currentLexem.lexemCode == 19)
+                        {
+                            if (char.IsDigit(currentLexem.lexemContaintment[0]))
+                            {
+                                ErrorState(currentLexem, currentLexem.lexemStartPosition, currentLexem.lexemStartPosition, "Идентификатор не может начинаться с цифры!");
+                            }
+                            for (int i = 0; i&lt;currentLexem.lexemContaintment.Length; i++)
+                            {
+                                if (((currentLexem.lexemContaintment[i] &gt;= 'а') &amp;&amp; (currentLexem.lexemContaintment[i] &lt;= 'я'))||((currentLexem.lexemContaintment[i] &gt;= 'А') &amp;&amp;(currentLexem.lexemContaintment[i] &lt;= 'Я')))
+                                {
+                                    int errPosStart = currentLexem.lexemStartPosition + i;
+                                    int errPosEnd = errPosStart;
+                                    while ((((currentLexem.lexemContaintment[i] &gt;= 'а') &amp;&amp; (currentLexem.lexemContaintment[i] &lt;= 'я')) || ((currentLexem.lexemContaintment[i] &gt;= 'А') &amp;&amp; (currentLexem.lexemContaintment[i] &lt;= 'Я'))) &amp;&amp; i &lt; currentLexem.lexemContaintment.Length-1 &amp;&amp; errPosEnd &lt; currentLexem.lexemContaintment.Length-1)
+                                    {
+                                        i++;
+                                        errPosEnd++;
+                                    }
+                                    ErrorState(currentLexem, errPosStart, errPosEnd, "Идентификатор не может содержать символы кириллицы!");
+                                }
+                                else if (!char.IsLetterOrDigit(currentLexem.lexemContaintment[i]))
+                                {
+                                    ErrorState(currentLexem, currentLexem.lexemStartPosition, currentLexem.lexemEndPosition, $"Недопустимый символ: '{currentLexem.lexemContaintment[i]}'!");
+                                }
+                            }
+                            currentState = ParserState.IdRem;
+                        }
+                        else if (position &gt;= lexems.Count())
+                        {
+                            ErrorState(null, "Ожидался идентификатор, но лексемы не найдено.");
+                            hasErrors = true;
+                        }
+                        else if (position &lt; lexems.Count())
+                        {
+                            int count = 0;
+                            bool fullExit = false;
+                            bool tempExit = false;
+                            int errPosStart = currentLexem.lexemStartPosition;
+                            int tempPos = position;
+                            Lexem currentTempLexem = lexems[tempPos];
+                            while (currentTempLexem.lexemCode != 4 &amp;&amp; tempPos &lt;= lexems.Count())
+                            {
+                                if (currentTempLexem.lexemCode == 18)
+                                {
+                                    if (count == 0)
+                                    {
+                                        fullExit = true;
+                                        ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидался идентификатор.");
+                                        currentState = ParserState.End;
+                                        break;
+                                    }
+                                    fullExit = true;
+                                    ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидался идентификатор.");
+                                    currentState = ParserState.IdRem;
+                                    break;
+                                }
+                                count++;
+                                tempPos++;
+                                if (tempPos &lt; lexems.Count())
+                                {
+                                    currentTempLexem = lexems[tempPos];
+                                }
+                                else
+                                {
+                                    tempExit = true;
+                                    ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидался идентификатор.");
+                                    currentState = ParserState.End;
+                                    break;
+                                }
+                            }
+                            if (tempExit)
+                            {
+                                break;
+                            }
+                            if (fullExit)
+                            {
+                                continue;
+                            }
+                            position = tempPos;
+                            currentState = ParserState.IdRem;
+                            ErrorState(currentLexem, errPosStart, currentTempLexem.lexemStartPosition, "Ожидался идентификатор.");
+                            continue;
+                        }
+                        else
+                        {
+                            ErrorState(currentLexem, currentLexem.lexemStartPosition, currentLexem.lexemEndPosition, $"Ожидался идентификатор, но была найдена лексема с типом {currentLexem.lexemType} (Лексема {currentLexem.lexemContaintment}).");
+                            hasErrors = true;
+                            currentState = ParserState.IdRem;
+                        }
+                        break;
+
+                    case ParserState.IdRem:
+                        if (currentLexem.lexemCode == 4)
+                            currentState = ParserState.FSymbol;
+                        else if (position &gt;= lexems.Count())
+                        {
+                            ErrorState(null, "Ожидался символ '=', но лексемы не найдено.");
+                        }
+                        else if (position &lt; lexems.Count())
+                        {
+                            int count = 0;
+                            bool fullExit = false;
+                            bool tempExit = false;
+                            int errPosStart = currentLexem.lexemStartPosition;
+                            int tempPos = position;
+                            Lexem currentTempLexem = lexems[tempPos];
+                            while (currentTempLexem.lexemCode != 6 &amp;&amp; tempPos &lt;= lexems.Count())
+                            {
+                                if (currentTempLexem.lexemCode == 18)
+                                {
+                                    if (count == 0)
+                                    {
+                                        fullExit = true;
+                                        ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидался символ '='.");
+                                        currentState = ParserState.End;
+                                        break;
+                                    }
+                                    fullExit = true;
+                                    ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидался символ '='.");
+                                    currentState = ParserState.FSymbol;
+                                    break;
+                                }
+                                count++;
+                                tempPos++;
+                                if (tempPos &lt; lexems.Count())
+                                {
+                                    currentTempLexem = lexems[tempPos];
+                                }
+                                else
+                                {
+                                    tempExit = true;
+                                    ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидался символ '='.");
+                                    currentState = ParserState.End;
+                                    break;
+                                }
+                            }
+                            if (tempExit)
+                            {
+                                break;
+                            }
+                            if (fullExit)
+                            {
+                                continue;
+                            }
+                            position = tempPos;
+                            currentState = ParserState.FSymbol;
+                            ErrorState(currentLexem, errPosStart, currentTempLexem.lexemStartPosition, "Ожидался символ '='.");
+                            continue;
+                        }
+                        else
+                        {
+                            ErrorState(currentLexem, currentLexem.lexemStartPosition, currentLexem.lexemEndPosition, "Ожидался символ '='.");
+                            hasErrors = true;
+                            currentState = ParserState.FSymbol;
+                        }
+                        break;
+
+                    case ParserState.FSymbol:
+                        if (currentLexem.lexemCode == 6)
+                            currentState = ParserState.EndFString;
+                        else if (position &gt;= lexems.Count())
+                        {
+                            ErrorState(null, "Ожидался форматный спецификатор '\"{:f}\"', но лексемы не найдено.");
+                        }
+                        else if (currentLexem.lexemCode == 19)
+                        {
+                            ErrorState(currentLexem, currentLexem.lexemStartPosition, currentLexem.lexemEndPosition, "Ожидался форматный спецификатор '\"{:f}\"'!");
+                        }
+                        else if (position &lt; lexems.Count())
+                        {
+                            int count = 0;
+                            bool fullExit = false;
+                            bool tempExit = false;
+                            int errPosStart = currentLexem.lexemStartPosition;
+                            int tempPos = position;
+                            Lexem currentTempLexem = lexems[tempPos];
+                            while (currentTempLexem.lexemCode != 9 &amp;&amp; tempPos &lt;= lexems.Count())
+                            {
+                                if (currentTempLexem.lexemCode == 18)
+                                {
+                                    if (count == 0)
+                                    {
+                                        fullExit = true;
+                                        ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидался форматный спецификатор '\"{:f}\"'.");
+                                        currentState = ParserState.End;
+                                        break;
+                                    }
+                                    fullExit = true;
+                                    ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидался форматный спецификатор '\"{:f}\"'.");
+                                    currentState = ParserState.EndFString;
+                                    break;
+                                }
+                                count++;
+                                tempPos++;
+                                if (tempPos &lt; lexems.Count())
+                                {
+                                    currentTempLexem = lexems[tempPos];
+                                }
+                                else
+                                {
+                                    tempExit = true;
+                                    ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидался форматный спецификатор '\"{:f}\"'.");
+                                    currentState = ParserState.End;
+                                    break;
+                                }
+                            }
+                            if (tempExit)
+                            {
+                                break;
+                            }
+                            if (fullExit)
+                            {
+                                continue;
+                            }
+                            position = tempPos;
+                            currentState = ParserState.EndFString;
+                            ErrorState(currentLexem, errPosStart, currentTempLexem.lexemStartPosition, "Ожидался форматный спецификатор '\"{:f}\"'.");
+                            continue;
+                        }
+                        else
+                        {
+                            ErrorState(currentLexem, currentLexem.lexemStartPosition, currentLexem.lexemEndPosition, "Ожидался форматный спецификатор '\"{:f}\"'.");
+                            hasErrors = true;
+                            currentState = ParserState.EndFString;
+                        }
+                        break;
+
+                    case ParserState.EndFString:
+                        if (currentLexem.lexemCode == 9)
+                            currentState = ParserState.Format;
+                        else if (position &gt;= lexems.Count())
+                        {
+                            ErrorState(null, "Ожидалась точка ('.'), но лексемы не найдено.");
+                        }
+                        else if (position &lt; lexems.Count())
+                        {
+                            int count = 0;
+                            bool fullExit = false;
+                            bool tempExit = false;
+                            int errPosStart = currentLexem.lexemStartPosition;
+                            int tempPos = position;
+                            Lexem currentTempLexem = lexems[tempPos];
+                            while (currentTempLexem.lexemCode != 2 &amp;&amp; tempPos &lt;= lexems.Count()) {
+                                if (currentTempLexem.lexemCode == 18)
+                                {
+                                    if (count == 0)
+                                    {
+                                        fullExit = true;
+                                        ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидалась точка ('.').");
+                                        currentState = ParserState.End;
+                                        break;
+                                    }
+                                    fullExit = true;
+                                    ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидалась точка ('.').");
+                                    currentState = ParserState.Format;
+                                    break;
+                                }
+                                count++;
+                                tempPos++;
+                                if(tempPos &lt; lexems.Count())
+                                {
+                                    currentTempLexem = lexems[tempPos];
+                                }
+                                else
+                                {
+                                    tempExit = true;
+                                    ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидалась точка ('.').");
+                                    currentState = ParserState.End;
+                                    break;
+                                }
+                            }
+                            if (tempExit)
+                            {
+                                break;
+                            }
+                            if (fullExit)
+                            {
+                                continue;
+                            }
+                            position = tempPos;
+                            currentState = ParserState.Format;
+                            ErrorState(currentLexem, errPosStart, currentTempLexem.lexemStartPosition, "Ожидалась точка ('.').");
+                            continue;
+                        }
+                        else
+                        {
+                            ErrorState(currentLexem, currentLexem.lexemStartPosition, currentLexem.lexemEndPosition, "Ожидалась точка ('.').");
+                            hasErrors = true;
+                            currentState = ParserState.Format;
+                        }
+                        break;
+
+                    case ParserState.Format:
+                        if (currentLexem.lexemCode == 2)
+                            currentState = ParserState.OpenArg;
+                        else if (currentLexem.lexemCode == 19)
+                        {
+                            for (int i = 0; i &lt; currentLexem.lexemContaintment.Length-1; i++)
+                            {
+                                if (((currentLexem.lexemContaintment[i] &gt;= 'а') &amp;&amp; (currentLexem.lexemContaintment[i] &lt;= 'я')) || ((currentLexem.lexemContaintment[i] &gt;= 'А') &amp;&amp; (currentLexem.lexemContaintment[i] &lt;= 'Я')))
+                                {
+                                    int errPosStart = currentLexem.lexemStartPosition + i;
+                                    int errPosEnd = errPosStart;
+                                    while ((((currentLexem.lexemContaintment[i] &gt;= 'а') &amp;&amp; (currentLexem.lexemContaintment[i] &lt;= 'я')) || ((currentLexem.lexemContaintment[i] &gt;= 'А') &amp;&amp; (currentLexem.lexemContaintment[i] &lt;= 'Я'))) &amp;&amp; i &lt; currentLexem.lexemContaintment.Length - 1 &amp;&amp; errPosEnd &lt; currentLexem.lexemContaintment.Length - 1)
+                                    {
+                                        i++;
+                                        errPosEnd++;
+                                    }
+                                    ErrorState(currentLexem, errPosStart, errPosEnd, "Ключевое слово не может содержать символы кириллицы!");
+                                }
+                                else if (!char.IsLetterOrDigit(currentLexem.lexemContaintment[i]))
+                                {
+                                    ErrorState(currentLexem, currentLexem.lexemStartPosition+i, currentLexem.lexemEndPosition-i, "Недопустимый символ!");
+                                }
+                            }
+                            currentState = ParserState.OpenArg;
+                        }
+                        else if (position &gt;= lexems.Count())
+                        {
+                            ErrorState(null, "Ожидалось ключевое слово 'format', но лексемы не найдено.");
+                        }
+                        else if (position &lt; lexems.Count())
+                        {
+                            int count = 0;
+                            bool fullExit = false;
+                            bool tempExit = false;
+                            int errPosStart = currentLexem.lexemStartPosition;
+                            int tempPos = position;
+                            Lexem currentTempLexem = lexems[tempPos];
+                            while (currentTempLexem.lexemCode != 16 &amp;&amp; tempPos &lt; lexems.Count())
+                            {
+                                if (currentTempLexem.lexemCode == 18)
+                                {
+                                    if (count == 0)
+                                    {
+                                        fullExit = true;
+                                        ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидалось ключевое слово 'format'.");
+                                        currentState = ParserState.End;
+                                        break;
+                                    }
+                                    fullExit = true;
+                                    ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидалось ключевое слово 'format'.");
+                                    currentState = ParserState.OpenArg;
+                                    break;
+                                }
+                                count++;
+                                tempPos++;
+                                if (tempPos &lt; lexems.Count())
+                                {
+                                    currentTempLexem = lexems[tempPos];
+                                }
+                                else
+                                {
+                                    tempExit = true;
+                                    ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидалось ключевое слово 'format'.");
+                                    currentState = ParserState.End;
+                                    break;
+                                }
+                            }
+                            if (tempExit)
+                            {
+                                break;
+                            }
+                            if (fullExit)
+                            {
+                                continue;
+                            }
+                            position = tempPos;
+                            currentState = ParserState.OpenArg;
+                            ErrorState(currentLexem, errPosStart, currentTempLexem.lexemStartPosition, "Ожидалось ключевое слово 'format'.");
+                            continue;
+                        }
+                        else
+                        {
+                            ErrorState(currentLexem, currentLexem.lexemStartPosition, currentLexem.lexemEndPosition, "Ожидалось ключевое слово 'format'.");
+                            hasErrors = true;
+                            currentState = ParserState.OpenArg;
+                        }
+                        break;
+
+                    case ParserState.OpenArg:
+                        if (currentLexem.lexemCode == 16)
+                            currentState = ParserState.Scientific;
+                        else if (position &gt;= lexems.Count())
+                        {
+                            ErrorState(null, "Ожидалась открывающая скобка ('('), но лексемы не найдено.");
+                        }
+                        else if (position &lt; lexems.Count())
+                        {
+                            int count = 0;
+                            bool fullExit = false;
+                            bool tempExit = false;
+                            int errPosStart = currentLexem.lexemStartPosition;
+                            int tempPos = position;
+                            Lexem currentTempLexem = lexems[tempPos];
+                            while (currentTempLexem.lexemCode != 10 &amp;&amp; currentTempLexem.lexemCode != 11 &amp;&amp; currentTempLexem.lexemCode != 14 &amp;&amp; currentTempLexem.lexemCode != 15 &amp;&amp; tempPos &lt; lexems.Count())
+                            {
+                                if (currentTempLexem.lexemCode == 18)
+                                {
+                                    if (count == 0)
+                                    {
+                                        fullExit = true;
+                                        ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидалась открывающая скобка '('.");
+                                        currentState = ParserState.End;
+                                        break;
+                                    }
+                                    fullExit = true;
+                                    ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидалась открывающая скобка '('.");
+                                    currentState = ParserState.Scientific;
+                                    break;
+                                }
+                                count++;
+                                tempPos++;
+                                if (tempPos &lt; lexems.Count())
+                                {
+                                    currentTempLexem = lexems[tempPos];
+                                }
+                                else
+                                {
+                                    tempExit = true;
+                                    ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидалась открывающая скобка '('.");
+                                    currentState = ParserState.End;
+                                    break;
+                                }
+                            }
+                            if (tempExit)
+                            {
+                                break;
+                            }
+                            if (fullExit)
+                            {
+                                continue;
+                            }
+                            position = tempPos;
+                            currentState = ParserState.Scientific;
+                            ErrorState(currentLexem, errPosStart, currentTempLexem.lexemStartPosition, "Ожидалась открывающая скобка '('.");
+                            continue;
+                        }
+                        else
+                        {
+                            ErrorState(currentLexem, currentLexem.lexemStartPosition, currentLexem.lexemEndPosition, "Ожидалась открывающая скобка '('.");
+                            hasErrors = true;
+                            currentState = ParserState.Scientific;
+                        }
+                        break;
+
+                    case ParserState.Scientific:
+                        if (currentLexem.lexemCode == 10 || currentLexem.lexemCode == 11)
+                        {
+                            currentState = ParserState.ExpNumRem; break;
+                        }
+                        else if (currentLexem.lexemCode == 14 || currentLexem.lexemCode == 15)
+                        {
+                            currentState = ParserState.ExpNumRem; break;
+                        }
+                        else if (currentLexem.lexemCode == 7 || currentLexem.lexemCode == 8)
+                        {
+                            position++;
+                            continue;
+                        }
+                        else if (currentLexem.lexemCode == 19)
+                        {
+                            string num = currentLexem.lexemContaintment.ToString(); // Получаем строковое представление числа
+                            bool hasDot = false;
+                            bool hasExp = false;
+                            bool hasFractionPart = false;
+                            bool hasExpNumber = false;
+                            bool hasPlus = false;
+                            int dotCount = 0;
+                            int expIndex = -1;
+
+                            // Проверка, начинается ли число с цифры
+                            if (!char.IsDigit(num[0]))
+                            {
+                                ErrorState(currentLexem, currentLexem.lexemStartPosition, currentLexem.lexemStartPosition, "Аргумент должен быть числом!");
+                            }
+
+                            for (int i = 0; i &lt; num.Length; i++)
+                            {
+                                char c = num[i];
+
+                                if (c == '.')
+                                {
+                                    dotCount++;
+                                    if (dotCount &gt; 1)
+                                    {
+                                        ErrorState(currentLexem, currentLexem.lexemStartPosition, currentLexem.lexemEndPosition, "Некорректная запись числа! Лишняя точка.");
+                                    }
+                                    hasDot = true;
+                                    if (i == num.Length - 1)
+                                    {
+                                        ErrorState(currentLexem, currentLexem.lexemStartPosition, currentLexem.lexemEndPosition, "Отсутствует вещественная часть числа после точки.");
+                                    }
+                                }
+                                else if (char.IsDigit(c))
+                                {
+                                    if (hasDot &amp;&amp; !hasPlus)
+                                        hasFractionPart = true;
+
+                                    if (hasExp &amp;&amp; hasPlus)
+                                        hasExpNumber = true;
+                                }
+                                else if (c == 'e' || c == 'E')
+                                {
+                                    if (hasExp)
+                                    {
+                                        ErrorState(currentLexem, currentLexem.lexemStartPosition, currentLexem.lexemEndPosition, "Некорректная запись числа! Лишний символ экспоненты.");
+                                        hasErrors = true;
+                                    }
+                                    hasExp = true;
+                                    expIndex = i;
+                                    if (i == 0)
+                                    {
+                                        ErrorState(currentLexem, currentLexem.lexemStartPosition, currentLexem.lexemEndPosition, "Некорректная запись числа! Символ экспоненты без числа перед ним.");
+                                    }
+
+                                    if (i == num.Length)
+                                    {
+                                        ErrorState(currentLexem, currentLexem.lexemStartPosition, currentLexem.lexemEndPosition, "Отсутствует показатель экспоненты.");
+                                    }
+                                }
+                                else if (i == expIndex + 1 &amp;&amp; (c == '+' || c == '-'))
+                                {
+                                    hasPlus = true;
+                                    if (i == num.Length - 1)
+                                    {
+                                        ErrorState(currentLexem, currentLexem.lexemStartPosition, currentLexem.lexemEndPosition, "Отсутствует показатель экспоненты после знака.");
+                                    }
+                                }
+                                else
+                                {
+                                    ErrorState(currentLexem, currentLexem.lexemStartPosition, currentLexem.lexemEndPosition, $"Некорректный символ в числе: {c}");
+                                }
+                            }
+                            if (hasDot &amp;&amp; !hasFractionPart)
+                            {
+                                ErrorState(currentLexem, currentLexem.lexemStartPosition, currentLexem.lexemEndPosition, "Некорректная запись числа! Отсутствует вещественная часть после точки.");
+                            }
+
+                            currentState = ParserState.ExpNumRem;
+                            break;
+                        }
+                        else if (position &gt;= lexems.Count())
+                        {
+                            ErrorState(null, "Ожидалось число в экспоненциальной записи (например, 3.14e+4), но лексемы не найдено.");
+                        }
+                        else if (position &lt; lexems.Count())
+                        {
+                            int count = 0;
+                            bool fullExit = false;
+                            bool tempExit = false;
+                            int errPosStart = currentLexem.lexemStartPosition;
+                            int tempPos = position;
+                            Lexem currentTempLexem = lexems[tempPos];
+                            while (currentTempLexem.lexemCode != 17 &amp;&amp; tempPos &lt; lexems.Count())
+                            {
+                                if (currentTempLexem.lexemCode == 18)
+                                {
+                                    if (count == 0)
+                                    {
+                                        fullExit = true;
+                                        ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидалось число в экспоненциальной записи (например, 3.14e+4).");
+                                        currentState = ParserState.End;
+                                        break;
+                                    }
+                                    fullExit = true;
+                                    ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидалось число в экспоненциальной записи (например, 3.14e+4).");
+                                    currentState = ParserState.ExpNumRem;
+                                    break;
+                                }
+                                count++;
+                                tempPos++;
+                                if (tempPos &lt; lexems.Count())
+                                {
+                                    currentTempLexem = lexems[tempPos];
+                                }
+                                else
+                                {
+                                    tempExit = true;
+                                    ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидалось число в экспоненциальной записи (например, 3.14e+4).");
+                                    currentState = ParserState.End;
+                                    break;
+                                }
+                            }
+                            if (tempExit)
+                            {
+                                break;
+                            }
+                            if (fullExit)
+                            {
+                                continue;
+                            }
+                            position = tempPos;
+                            currentState = ParserState.ExpNumRem;
+                            ErrorState(currentLexem, errPosStart, currentTempLexem.lexemStartPosition, "Ожидалось число в экспоненциальной записи (например, 3.14e+4).");
+                            continue;
+                        }
+                        else
+                        {
+                            ErrorState(currentLexem, currentLexem.lexemStartPosition, currentLexem.lexemEndPosition, "Ожидалось число в экспоненциальной записи (например, 3.14e+4).");
+                            hasErrors = true;
+                            currentState = ParserState.ExpNumRem;
+                        }
+                        break;
+                    case ParserState.ExpNumRem:
+                        if (currentLexem.lexemCode == 17)
+                        {
+                            globalEndPos = currentLexem.lexemEndPosition;
+                            currentState = ParserState.End;
+                        } 
+                        else if (position &gt;= lexems.Count())
+                        {
+                            ErrorState(null, "Ожидалась закрывающая скобка (')'), но лексемы не найдено.");
+                        }
+                        else if (position &lt; lexems.Count())
+                        {
+                            int count = 0;
+                            bool fullExit = false;
+                            bool tempExit = false;
+                            int errPosStart = currentLexem.lexemStartPosition;
+                            int tempPos = position;
+                            Lexem currentTempLexem = lexems[tempPos];
+                            while (tempPos &lt;= lexems.Count())
+                            {
+                                if (currentTempLexem.lexemCode == 18)
+                                {
+                                    if (count == 0)
+                                    {
+                                        fullExit = true;
+                                        ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидалась закрывающая скобка ')'.");
+                                        currentState = ParserState.End;
+                                        break;
+                                    }
+                                    fullExit = true;
+                                    ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидалась закрывающая скобка ')'.");
+                                    currentState = ParserState.End;
+                                    break;
+                                }
+                                count++;
+                                tempPos++;
+                                if (tempPos &lt; lexems.Count())
+                                {
+                                    currentTempLexem = lexems[tempPos];
+                                }
+                                else
+                                {
+                                    tempExit = true;
+                                    ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидалась закрывающая скобка ')'.");
+                                    currentState = ParserState.End;
+                                    break;
+                                }
+                            }
+                            if (tempExit)
+                            {
+                                break;
+                            }
+                            if (fullExit)
+                            {
+                                continue;
+                            }
+                            position = tempPos;
+                            currentState = ParserState.End;
+                            ErrorState(currentLexem, errPosStart, currentTempLexem.lexemStartPosition, "Ожидалась закрывающая скобка ')'.");
+                            continue;
+                        }
+                        else
+                        {
+                            ErrorState(currentLexem, currentLexem.lexemStartPosition, currentLexem.lexemEndPosition, "Ожидалась закрывающая скобка ')'.");
+                            hasErrors = true;
+                            currentState = ParserState.End;
+                        }
+                        break;
+
+                    case ParserState.End:
+                        if (currentLexem.lexemCode == 18 &amp;&amp; !hasErrors &amp;&amp; position &gt;= lexems.Count()-1) {
+                            rowHasEnded = true;
+                            return;
+                        } 
+                        else if (currentLexem.lexemCode == 18 &amp;&amp; hasErrors)
+                        {
+                            break;
+                        }
+                        else if (currentLexem.lexemCode == 18 &amp;&amp; position &lt; lexems.Count())
+                        {
+                            currentState = ParserState.Start;
+                        }
+                        else if (position &lt;= lexems.Count())
+                        {
+                            bool fullExit = false;
+                            int errPosStart = currentLexem.lexemStartPosition;
+                            int tempPos = position;
+                            Lexem currentTempLexem = lexems[tempPos];
+                            while (tempPos &lt; lexems.Count())
+                            {
+                                if (currentTempLexem.lexemCode == 18)
+                                {
+                                    fullExit = true;
+                                    ErrorState(currentLexem, errPosStart, currentLexem.lexemEndPosition, "Ожидался символ ';'.");
+                                    currentState = ParserState.Start;
+                                    break;
+                                }
+                                tempPos++;
+                                if (tempPos == lexems.Count())
+                                {
+                                    ErrorState(null, errPosStart, currentTempLexem.lexemEndPosition, "Ожидался символ ';'.");
+                                    return;
+                                }
+                                currentTempLexem = lexems[tempPos];
+                            }
+                            if (fullExit)
+                            {
+                                continue;
+                            }
+                            position = tempPos;
+                            currentState = ParserState.Start;
+                            ErrorState(currentLexem, errPosStart, position, "Ожидался символ ';'.");
+                            continue;
+                        }
+                        else
+                        {
+                            ErrorState(currentLexem, currentLexem.lexemStartPosition, currentLexem.lexemEndPosition, "Ожидался символ ';'.");
+                            hasErrors = true;
+                        }
+                        break;
+                    case ParserState.Error:
+                        break;
+                }
+                position++;
+            }
+            if (!rowHasEnded)
+            {
+                ErrorState(null, globalEndPos, globalEndPos, "Ожидался символ ';'.");
+            }
+            return;
+        }
+        private bool ErrorState(Lexem lexem, string message)
+        {
+            stateLog.Add(new ErrorPair(message, lexem));
+            return false;
+        }
+        private void ErrorState(Lexem lexem, int posStart, int posEnd, string message)
+        {
+            stateLog.Add(new ErrorPair(message, lexem, posStart, posEnd));
+        }
+
+        public void PrintLog()
+        {
+            foreach (var entry in stateLog)
+            {
+                Console.WriteLine(entry);
+            }
+        }
+    }
+
+    public class ErrorPair
+    {
+        public Lexem errorLexem;
+        public string errorMessage;
+        public int posStart;
+        public int posEnd;
+        public ErrorPair(string message, Lexem lexem)
+        {
+            if (lexem != null)
+            {
+                errorLexem = lexem;
+            }
+            errorMessage = message;
+        }
+        public ErrorPair(string message, Lexem lexem, int start, int end)
+        {
+            if (lexem != null)
+            {
+                errorLexem = lexem;
+            }
+            errorLexem = lexem;
+            errorMessage = message;
+            posStart = start;
+            posEnd = end;
+        }
+    }
+}</value>
+  </data>
+</root>
