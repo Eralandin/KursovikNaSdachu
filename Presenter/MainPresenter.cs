@@ -63,7 +63,21 @@ namespace Kursovik.Presenter
             _view.ThrowNewTextToModel += SetNewTextOnModel;
             _view.CloseCurrentPage += CloseCurrentPage;
             _view.StartEnd += StartEnd;
+            _view.POLIZ += POLIZStart;
         }
+
+
+        ////Блок ПОЛИЗ
+        //Обработка запуска ПОЛИЗ
+        public void POLIZStart(object sender, string textToAnalyze)
+        {
+            var polizer = new POLIZer(textToAnalyze);
+            var messages = polizer.AnalyzeAndBuildPOLIZ();
+
+            _view.FillPOLIZ(messages);
+        }
+
+
         ////Блок запуска функционала
         //Обработка "Пуска"
         public void StartEnd(object sender, string textToAnalyze)

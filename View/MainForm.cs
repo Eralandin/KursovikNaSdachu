@@ -62,6 +62,7 @@ namespace Kursovik.View
         public event EventHandler<string> ThrowLastTextToModel;
         public event EventHandler<string> ThrowNewTextToModel;
         public event EventHandler CloseCurrentPage;
+        public event EventHandler<string> POLIZ;
 
 
         ////Блок работы со вкладками
@@ -690,6 +691,15 @@ namespace Kursovik.View
             }
         }
 
+        public void FillPOLIZ(List<string> messagesList)
+        {
+            POLIZDGV.Rows.Clear();
+            foreach (string msg in messagesList)
+            {
+                POLIZDGV.Rows.Add(msg);
+            }
+        }
+
 
         ////Блок вспомогательных элементов
         //Справка
@@ -772,6 +782,11 @@ namespace Kursovik.View
         {
             Mission mission = new Mission();
             mission.Show();
+        }
+
+        private void POLIZBtn_Click(object sender, EventArgs e)
+        {
+            POLIZ?.Invoke(this, UpperRichTextBox.Text.Trim().Replace("  ", " ").Replace("\t", "").Replace("\n", "").Replace("\r", ""));
         }
     }
 }

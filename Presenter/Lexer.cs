@@ -44,7 +44,35 @@ namespace Kursovik.Presenter
                     if (ProcessSymbol()) break;
                 }
             }
-            return lexemsList;
+            List<Lexem> optimized = new List<Lexem>();
+            int i = 0;
+            while (i < lexemsList.Count)
+            {
+                if (lexemsList[i].lexemCode == 19)
+                {
+                    int start = lexemsList[i].lexemStartPosition;
+                    int end = lexemsList[i].lexemEndPosition;
+                    string value = lexemsList[i].lexemContaintment;
+
+                    int j = i + 1;
+                    while (j < lexemsList.Count && lexemsList[j].lexemCode == 19)
+                    {
+                        value += lexemsList[j].lexemContaintment;
+                        end = lexemsList[j].lexemEndPosition;
+                        j++;
+                    }
+
+                    optimized.Add(new Lexem(19, value, start, end, _res));
+
+                    i = j;
+                }
+                else
+                {
+                    optimized.Add(lexemsList[i]);
+                    i++;
+                }
+            }
+            return optimized;
         }
 
         //Обработка численно-буквенных лексем

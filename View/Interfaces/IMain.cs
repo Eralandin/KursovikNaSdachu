@@ -31,6 +31,7 @@ namespace Kursovik.View.Interfaces
         event EventHandler<string> SetNewFileCreatedStr;
         event EventHandler<string> ThrowLastTextToModel;
         event EventHandler<string> ThrowNewTextToModel;
+        event EventHandler<string> POLIZ;
         event EventHandler CloseCurrentPage;
 
 
@@ -49,5 +50,6 @@ namespace Kursovik.View.Interfaces
         void ClearPairs();
         void FillScanerDGV(List<Lexem> lexemsList);
         void FillErrorsDGV(List<ErrorPair> errorsList);
+        void FillPOLIZ(List<string> messagesList);
     }
 }

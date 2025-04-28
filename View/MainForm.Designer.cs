@@ -32,6 +32,7 @@ namespace Kursovik.View
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainMenu = new System.Windows.Forms.MenuStrip();
             this.файоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.создатьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -91,6 +92,10 @@ namespace Kursovik.View
             this.ScanerDataGridView = new System.Windows.Forms.DataGridView();
             this.Mess = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MessageColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.POLIZPage = new System.Windows.Forms.TabPage();
+            this.POLIZDGV = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.POLIZBtn = new System.Windows.Forms.Button();
             this.MainMenu.SuspendLayout();
             this.BottomPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NSTUlogo)).BeginInit();
@@ -103,6 +108,8 @@ namespace Kursovik.View
             this.LowerTabs.SuspendLayout();
             this.ScanPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ScanerDataGridView)).BeginInit();
+            this.POLIZPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.POLIZDGV)).BeginInit();
             this.SuspendLayout();
             // 
             // MainMenu
@@ -452,6 +459,7 @@ namespace Kursovik.View
             // BottomPanel
             // 
             this.BottomPanel.BackColor = System.Drawing.Color.ForestGreen;
+            this.BottomPanel.Controls.Add(this.POLIZBtn);
             this.BottomPanel.Controls.Add(this.NSTUlogo);
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.BottomPanel.Location = new System.Drawing.Point(0, 458);
@@ -698,12 +706,15 @@ namespace Kursovik.View
             // 
             // LowerTabs
             // 
+            this.LowerTabs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LowerTabs.Controls.Add(this.ScanPage);
-            this.LowerTabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LowerTabs.Controls.Add(this.POLIZPage);
             this.LowerTabs.Location = new System.Drawing.Point(0, 0);
             this.LowerTabs.Name = "LowerTabs";
             this.LowerTabs.SelectedIndex = 0;
-            this.LowerTabs.Size = new System.Drawing.Size(749, 183);
+            this.LowerTabs.Size = new System.Drawing.Size(749, 184);
             this.LowerTabs.TabIndex = 1;
             // 
             // ScanPage
@@ -713,7 +724,7 @@ namespace Kursovik.View
             this.ScanPage.Location = new System.Drawing.Point(4, 22);
             this.ScanPage.Name = "ScanPage";
             this.ScanPage.Padding = new System.Windows.Forms.Padding(3);
-            this.ScanPage.Size = new System.Drawing.Size(741, 157);
+            this.ScanPage.Size = new System.Drawing.Size(741, 158);
             this.ScanPage.TabIndex = 0;
             this.ScanPage.Text = "Парсер";
             this.ScanPage.UseVisualStyleBackColor = true;
@@ -732,7 +743,7 @@ namespace Kursovik.View
             this.ScanerDataGridView.Location = new System.Drawing.Point(3, 3);
             this.ScanerDataGridView.Name = "ScanerDataGridView";
             this.ScanerDataGridView.ReadOnly = true;
-            this.ScanerDataGridView.Size = new System.Drawing.Size(735, 151);
+            this.ScanerDataGridView.Size = new System.Drawing.Size(735, 152);
             this.ScanerDataGridView.TabIndex = 0;
             // 
             // Mess
@@ -749,6 +760,60 @@ namespace Kursovik.View
             this.MessageColumn.Name = "MessageColumn";
             this.MessageColumn.ReadOnly = true;
             this.MessageColumn.Width = 161;
+            // 
+            // POLIZPage
+            // 
+            this.POLIZPage.Controls.Add(this.POLIZDGV);
+            this.POLIZPage.Location = new System.Drawing.Point(4, 22);
+            this.POLIZPage.Name = "POLIZPage";
+            this.POLIZPage.Size = new System.Drawing.Size(741, 158);
+            this.POLIZPage.TabIndex = 1;
+            this.POLIZPage.Text = "ПОЛИЗ";
+            this.POLIZPage.UseVisualStyleBackColor = true;
+            // 
+            // POLIZDGV
+            // 
+            this.POLIZDGV.AllowUserToAddRows = false;
+            this.POLIZDGV.AllowUserToDeleteRows = false;
+            this.POLIZDGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.POLIZDGV.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.POLIZDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.POLIZDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.POLIZDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1});
+            this.POLIZDGV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.POLIZDGV.Location = new System.Drawing.Point(0, 0);
+            this.POLIZDGV.Name = "POLIZDGV";
+            this.POLIZDGV.ReadOnly = true;
+            this.POLIZDGV.Size = new System.Drawing.Size(741, 158);
+            this.POLIZDGV.TabIndex = 1;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Сообщение";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // POLIZBtn
+            // 
+            this.POLIZBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.POLIZBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.POLIZBtn.Font = new System.Drawing.Font("Bahnschrift", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.POLIZBtn.Location = new System.Drawing.Point(652, 8);
+            this.POLIZBtn.Name = "POLIZBtn";
+            this.POLIZBtn.Size = new System.Drawing.Size(91, 35);
+            this.POLIZBtn.TabIndex = 12;
+            this.POLIZBtn.Text = "ПОЛИЗ";
+            this.POLIZBtn.UseVisualStyleBackColor = true;
+            this.POLIZBtn.Click += new System.EventHandler(this.POLIZBtn_Click);
             // 
             // MainForm
             // 
@@ -780,6 +845,8 @@ namespace Kursovik.View
             this.LowerTabs.ResumeLayout(false);
             this.ScanPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ScanerDataGridView)).EndInit();
+            this.POLIZPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.POLIZDGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -846,5 +913,9 @@ namespace Kursovik.View
         private TabPage ScanPage;
         private DataGridViewTextBoxColumn Mess;
         private DataGridViewTextBoxColumn MessageColumn;
+        private TabPage POLIZPage;
+        private DataGridView POLIZDGV;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private Button POLIZBtn;
     }
 }
