@@ -788,5 +788,42 @@ namespace Kursovik.View
         {
             POLIZ?.Invoke(this, UpperRichTextBox.Text.Trim().Replace("  ", " ").Replace("\t", "").Replace("\n", "").Replace("\r", ""));
         }
+
+        private void регулярноеВыражениеДляКППОрганизацииToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string pattern = @"\b\d{4}\d{2}\d{3}\b";
+            FindSubstring(pattern);
+        }
+
+        private void размерыФайловToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string pattern = @"\b\d+(?:\.\d+)?\s?(?:KB|MB|GB|TB)\b";
+            FindSubstring(pattern);
+        }
+
+        private void nINUKNationalInsuranceNumberToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string pattern = @"\b(?!BG|GB|KN|NK|NT|TN|ZZ)(?!.*[DFIQUV])[A-CEGHJ-NPR-TW-Z]{2}\d{6}[A-D]?\b";
+            FindSubstring(pattern);
+        }
+
+        private void FindSubstring(string pattern)
+        {
+            RegularDGV.Rows.Clear();
+            UpperRichTextBox.SelectAll();
+            UpperRichTextBox.SelectionBackColor = UpperRichTextBox.BackColor;
+            string text = UpperRichTextBox.Text;
+            MatchCollection matches = Regex.Matches(text, pattern);
+            foreach (Match match in matches)
+            {
+                int startIndex = match.Index;
+                int length = match.Length;
+                string result = $"Найдено: \"{match.Value}\" (позиция: {startIndex})";
+                RegularDGV.Rows.Add(result);
+                UpperRichTextBox.Select(startIndex, length);
+                UpperRichTextBox.SelectionBackColor = Color.Red;
+            }
+            UpperRichTextBox.SelectionLength = 0;
+        }
     }
 }
