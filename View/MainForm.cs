@@ -825,5 +825,20 @@ namespace Kursovik.View
             }
             UpperRichTextBox.SelectionLength = 0;
         }
+        
+        private void Lab8Btn_Click(object sender, EventArgs e)
+        {
+            string input = UpperRichTextBox.Text.Trim().Replace("  ", " ").Replace("\t", "").Replace("\n", "").Replace("\r", "");
+            Lab8Analyzer.Parser parser = new Lab8Analyzer.Parser(input);
+            parser.Parse();
+            Lab8DGV.Rows.Clear();
+            if (parser.Errors != null)
+            {
+                foreach (var error in parser.Errors)
+                {
+                    Lab8DGV.Rows.Add($"Ошибка: {error.Message} (позиция {error.Position})");
+                }
+            }
+        }
     }
 }

@@ -32,6 +32,7 @@ namespace Kursovik.View
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.MainMenu = new System.Windows.Forms.MenuStrip();
@@ -61,6 +62,9 @@ namespace Kursovik.View
             this.исходныйКодПрограммыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.размерШрифтаВОкнеВыводавводаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+            this.регулярноеВыражениеДляКППОрганизацииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.размерыФайловToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nINUKNationalInsuranceNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.пускToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.справкToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.вызовСправкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,9 +104,10 @@ namespace Kursovik.View
             this.Regularki = new System.Windows.Forms.TabPage();
             this.RegularDGV = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.регулярноеВыражениеДляКППОрганизацииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.размерыФайловToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nINUKNationalInsuranceNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Lab8TabPage = new System.Windows.Forms.TabPage();
+            this.Lab8DGV = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Lab8Btn = new System.Windows.Forms.Button();
             this.MainMenu.SuspendLayout();
             this.BottomPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NSTUlogo)).BeginInit();
@@ -119,6 +124,8 @@ namespace Kursovik.View
             ((System.ComponentModel.ISupportInitialize)(this.POLIZDGV)).BeginInit();
             this.Regularki.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RegularDGV)).BeginInit();
+            this.Lab8TabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Lab8DGV)).BeginInit();
             this.SuspendLayout();
             // 
             // MainMenu
@@ -404,6 +411,27 @@ namespace Kursovik.View
             this.toolStripComboBox1.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBox1_TextUpdate);
             this.toolStripComboBox1.TextUpdate += new System.EventHandler(this.toolStripComboBox1_TextUpdate);
             // 
+            // регулярноеВыражениеДляКППОрганизацииToolStripMenuItem
+            // 
+            this.регулярноеВыражениеДляКППОрганизацииToolStripMenuItem.Name = "регулярноеВыражениеДляКППОрганизацииToolStripMenuItem";
+            this.регулярноеВыражениеДляКППОрганизацииToolStripMenuItem.Size = new System.Drawing.Size(483, 28);
+            this.регулярноеВыражениеДляКППОрганизацииToolStripMenuItem.Text = "Регулярное выражение для КПП организации";
+            this.регулярноеВыражениеДляКППОрганизацииToolStripMenuItem.Click += new System.EventHandler(this.регулярноеВыражениеДляКППОрганизацииToolStripMenuItem_Click);
+            // 
+            // размерыФайловToolStripMenuItem
+            // 
+            this.размерыФайловToolStripMenuItem.Name = "размерыФайловToolStripMenuItem";
+            this.размерыФайловToolStripMenuItem.Size = new System.Drawing.Size(483, 28);
+            this.размерыФайловToolStripMenuItem.Text = "Размеры файлов";
+            this.размерыФайловToolStripMenuItem.Click += new System.EventHandler(this.размерыФайловToolStripMenuItem_Click);
+            // 
+            // nINUKNationalInsuranceNumberToolStripMenuItem
+            // 
+            this.nINUKNationalInsuranceNumberToolStripMenuItem.Name = "nINUKNationalInsuranceNumberToolStripMenuItem";
+            this.nINUKNationalInsuranceNumberToolStripMenuItem.Size = new System.Drawing.Size(483, 28);
+            this.nINUKNationalInsuranceNumberToolStripMenuItem.Text = "NIN (UK National Insurance Number)";
+            this.nINUKNationalInsuranceNumberToolStripMenuItem.Click += new System.EventHandler(this.nINUKNationalInsuranceNumberToolStripMenuItem_Click);
+            // 
             // пускToolStripMenuItem
             // 
             this.пускToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
@@ -471,6 +499,7 @@ namespace Kursovik.View
             // BottomPanel
             // 
             this.BottomPanel.BackColor = System.Drawing.Color.ForestGreen;
+            this.BottomPanel.Controls.Add(this.Lab8Btn);
             this.BottomPanel.Controls.Add(this.POLIZBtn);
             this.BottomPanel.Controls.Add(this.NSTUlogo);
             this.BottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -737,10 +766,11 @@ namespace Kursovik.View
             this.LowerTabs.Controls.Add(this.ScanPage);
             this.LowerTabs.Controls.Add(this.POLIZPage);
             this.LowerTabs.Controls.Add(this.Regularki);
+            this.LowerTabs.Controls.Add(this.Lab8TabPage);
             this.LowerTabs.Location = new System.Drawing.Point(0, 0);
             this.LowerTabs.Name = "LowerTabs";
             this.LowerTabs.SelectedIndex = 0;
-            this.LowerTabs.Size = new System.Drawing.Size(749, 185);
+            this.LowerTabs.Size = new System.Drawing.Size(749, 186);
             this.LowerTabs.TabIndex = 1;
             // 
             // ScanPage
@@ -750,7 +780,7 @@ namespace Kursovik.View
             this.ScanPage.Location = new System.Drawing.Point(4, 22);
             this.ScanPage.Name = "ScanPage";
             this.ScanPage.Padding = new System.Windows.Forms.Padding(3);
-            this.ScanPage.Size = new System.Drawing.Size(741, 159);
+            this.ScanPage.Size = new System.Drawing.Size(741, 160);
             this.ScanPage.TabIndex = 0;
             this.ScanPage.Text = "Парсер";
             this.ScanPage.UseVisualStyleBackColor = true;
@@ -769,7 +799,7 @@ namespace Kursovik.View
             this.ScanerDataGridView.Location = new System.Drawing.Point(3, 3);
             this.ScanerDataGridView.Name = "ScanerDataGridView";
             this.ScanerDataGridView.ReadOnly = true;
-            this.ScanerDataGridView.Size = new System.Drawing.Size(735, 153);
+            this.ScanerDataGridView.Size = new System.Drawing.Size(735, 154);
             this.ScanerDataGridView.TabIndex = 0;
             // 
             // Mess
@@ -792,7 +822,7 @@ namespace Kursovik.View
             this.POLIZPage.Controls.Add(this.POLIZDGV);
             this.POLIZPage.Location = new System.Drawing.Point(4, 22);
             this.POLIZPage.Name = "POLIZPage";
-            this.POLIZPage.Size = new System.Drawing.Size(741, 159);
+            this.POLIZPage.Size = new System.Drawing.Size(741, 160);
             this.POLIZPage.TabIndex = 1;
             this.POLIZPage.Text = "ПОЛИЗ";
             this.POLIZPage.UseVisualStyleBackColor = true;
@@ -803,14 +833,14 @@ namespace Kursovik.View
             this.POLIZDGV.AllowUserToDeleteRows = false;
             this.POLIZDGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.POLIZDGV.BackgroundColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.POLIZDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.POLIZDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.POLIZDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.POLIZDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1});
@@ -818,7 +848,7 @@ namespace Kursovik.View
             this.POLIZDGV.Location = new System.Drawing.Point(0, 0);
             this.POLIZDGV.Name = "POLIZDGV";
             this.POLIZDGV.ReadOnly = true;
-            this.POLIZDGV.Size = new System.Drawing.Size(741, 159);
+            this.POLIZDGV.Size = new System.Drawing.Size(741, 160);
             this.POLIZDGV.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
@@ -833,7 +863,7 @@ namespace Kursovik.View
             this.Regularki.Controls.Add(this.RegularDGV);
             this.Regularki.Location = new System.Drawing.Point(4, 22);
             this.Regularki.Name = "Regularki";
-            this.Regularki.Size = new System.Drawing.Size(741, 159);
+            this.Regularki.Size = new System.Drawing.Size(741, 160);
             this.Regularki.TabIndex = 2;
             this.Regularki.Text = "Регулярки";
             this.Regularki.UseVisualStyleBackColor = true;
@@ -844,14 +874,14 @@ namespace Kursovik.View
             this.RegularDGV.AllowUserToDeleteRows = false;
             this.RegularDGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.RegularDGV.BackgroundColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.RegularDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.RegularDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.RegularDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.RegularDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn2});
@@ -859,7 +889,7 @@ namespace Kursovik.View
             this.RegularDGV.Location = new System.Drawing.Point(0, 0);
             this.RegularDGV.Name = "RegularDGV";
             this.RegularDGV.ReadOnly = true;
-            this.RegularDGV.Size = new System.Drawing.Size(741, 159);
+            this.RegularDGV.Size = new System.Drawing.Size(741, 160);
             this.RegularDGV.TabIndex = 2;
             // 
             // dataGridViewTextBoxColumn2
@@ -869,26 +899,59 @@ namespace Kursovik.View
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
-            // регулярноеВыражениеДляКППОрганизацииToolStripMenuItem
+            // Lab8TabPage
             // 
-            this.регулярноеВыражениеДляКППОрганизацииToolStripMenuItem.Name = "регулярноеВыражениеДляКППОрганизацииToolStripMenuItem";
-            this.регулярноеВыражениеДляКППОрганизацииToolStripMenuItem.Size = new System.Drawing.Size(483, 28);
-            this.регулярноеВыражениеДляКППОрганизацииToolStripMenuItem.Text = "Регулярное выражение для КПП организации";
-            this.регулярноеВыражениеДляКППОрганизацииToolStripMenuItem.Click += new System.EventHandler(this.регулярноеВыражениеДляКППОрганизацииToolStripMenuItem_Click);
+            this.Lab8TabPage.Controls.Add(this.Lab8DGV);
+            this.Lab8TabPage.Location = new System.Drawing.Point(4, 22);
+            this.Lab8TabPage.Name = "Lab8TabPage";
+            this.Lab8TabPage.Size = new System.Drawing.Size(741, 160);
+            this.Lab8TabPage.TabIndex = 3;
+            this.Lab8TabPage.Text = "Лаба 8";
+            this.Lab8TabPage.UseVisualStyleBackColor = true;
             // 
-            // размерыФайловToolStripMenuItem
+            // Lab8DGV
             // 
-            this.размерыФайловToolStripMenuItem.Name = "размерыФайловToolStripMenuItem";
-            this.размерыФайловToolStripMenuItem.Size = new System.Drawing.Size(483, 28);
-            this.размерыФайловToolStripMenuItem.Text = "Размеры файлов";
-            this.размерыФайловToolStripMenuItem.Click += new System.EventHandler(this.размерыФайловToolStripMenuItem_Click);
+            this.Lab8DGV.AllowUserToAddRows = false;
+            this.Lab8DGV.AllowUserToDeleteRows = false;
+            this.Lab8DGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.Lab8DGV.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Lab8DGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.Lab8DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Lab8DGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn3});
+            this.Lab8DGV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Lab8DGV.Location = new System.Drawing.Point(0, 0);
+            this.Lab8DGV.Name = "Lab8DGV";
+            this.Lab8DGV.ReadOnly = true;
+            this.Lab8DGV.Size = new System.Drawing.Size(741, 160);
+            this.Lab8DGV.TabIndex = 3;
             // 
-            // nINUKNationalInsuranceNumberToolStripMenuItem
+            // dataGridViewTextBoxColumn3
             // 
-            this.nINUKNationalInsuranceNumberToolStripMenuItem.Name = "nINUKNationalInsuranceNumberToolStripMenuItem";
-            this.nINUKNationalInsuranceNumberToolStripMenuItem.Size = new System.Drawing.Size(483, 28);
-            this.nINUKNationalInsuranceNumberToolStripMenuItem.Text = "NIN (UK National Insurance Number)";
-            this.nINUKNationalInsuranceNumberToolStripMenuItem.Click += new System.EventHandler(this.nINUKNationalInsuranceNumberToolStripMenuItem_Click);
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Сообщение";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // Lab8Btn
+            // 
+            this.Lab8Btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Lab8Btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Lab8Btn.Font = new System.Drawing.Font("Bahnschrift", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Lab8Btn.Location = new System.Drawing.Point(552, 8);
+            this.Lab8Btn.Name = "Lab8Btn";
+            this.Lab8Btn.Size = new System.Drawing.Size(91, 35);
+            this.Lab8Btn.TabIndex = 13;
+            this.Lab8Btn.Text = "Лаба 8";
+            this.Lab8Btn.UseVisualStyleBackColor = true;
+            this.Lab8Btn.Click += new System.EventHandler(this.Lab8Btn_Click);
             // 
             // MainForm
             // 
@@ -924,6 +987,8 @@ namespace Kursovik.View
             ((System.ComponentModel.ISupportInitialize)(this.POLIZDGV)).EndInit();
             this.Regularki.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.RegularDGV)).EndInit();
+            this.Lab8TabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Lab8DGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1000,5 +1065,9 @@ namespace Kursovik.View
         private TabPage Regularki;
         private DataGridView RegularDGV;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private TabPage Lab8TabPage;
+        private DataGridView Lab8DGV;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private Button Lab8Btn;
     }
 }
