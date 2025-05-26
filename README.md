@@ -224,3 +224,12 @@ G[<expr>]:
 
 ### Схема вызовов функций:
 ![Лаба8СхемаВызовов drawio (1)](https://github.com/user-attachments/assets/acfe89a9-3d7d-4430-8c62-a1b156c18f47)
+
+### Тестовые примеры:
+![image](https://github.com/user-attachments/assets/01358568-d33b-4a50-84e6-7251fdc447ff)
+![image](https://github.com/user-attachments/assets/2e4c6b81-f713-4588-95de-31e3daa12d08)
+![image](https://github.com/user-attachments/assets/72273478-fc09-457e-b251-cb7d2aaeed60)
+![image](https://github.com/user-attachments/assets/ce3e1c93-3e6e-4c93-a0db-d6387b61d4f9)
+
+
+
